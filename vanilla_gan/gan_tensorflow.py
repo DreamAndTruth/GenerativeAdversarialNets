@@ -1,3 +1,4 @@
+"""Generative Adversarial Nets."""
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 import numpy as np
@@ -7,6 +8,7 @@ import os
 
 
 def xavier_init(size):
+    """将权值初始化到一个较好的情况."""
     in_dim = size[0]
     xavier_stddev = 1. / tf.sqrt(in_dim / 2.)
     return tf.random_normal(shape=size, stddev=xavier_stddev)
@@ -14,15 +16,20 @@ def xavier_init(size):
 
 X = tf.placeholder(tf.float32, shape=[None, 784])
 
+"""从大的网络架构层面进行创新(相比较与前面的CNN，RNN在网络内部连接层面进行创新)."""
+# 初始化权值和偏置矩阵，D网络为一个三层网络
+# 最终生成一个实数（是否限制在0-1之间？）
 D_W1 = tf.Variable(xavier_init([784, 128]))
+# 一维数据是如何运行的？shape = [128] 而非 shape = [128, 1] / [1, 128]
 D_b1 = tf.Variable(tf.zeros(shape=[128]))
 
 D_W2 = tf.Variable(xavier_init([128, 1]))
 D_b2 = tf.Variable(tf.zeros(shape=[1]))
-
+# 将参数构建成一个list（也可以将参数构成一个字典dict（））
 theta_D = [D_W1, D_W2, D_b1, D_b2]
 
-
+"""从100维噪声数据生成784维的手写数字数据."""
+# 为网络提供随机噪声输入
 Z = tf.placeholder(tf.float32, shape=[None, 100])
 
 G_W1 = tf.Variable(xavier_init([100, 128]))
@@ -35,26 +42,31 @@ theta_G = [G_W1, G_W2, G_b1, G_b2]
 
 
 def sample_Z(m, n):
+    """生成服从均匀分布在[-1, 1]之间的随机矩阵."""
     return np.random.uniform(-1., 1., size=[m, n])
 
 
 def generator(z):
+    """使用三层网络对输入噪声进行非线性变换，输出生成数据."""
     G_h1 = tf.nn.relu(tf.matmul(z, G_W1) + G_b1)
     G_log_prob = tf.matmul(G_h1, G_W2) + G_b2
+    # 使网络输出数据分布在[-1, 1]之间
     G_prob = tf.nn.sigmoid(G_log_prob)
-
     return G_prob
 
 
 def discriminator(x):
+    """使用三层网络对输入数据的来源进行辨别，输出为数据为真的概率."""
+    # 在进行前向传播的时候tf中的加法与符号 + 混合使用，是否会造成隐藏问题
     D_h1 = tf.nn.relu(tf.matmul(x, D_W1) + D_b1)
     D_logit = tf.matmul(D_h1, D_W2) + D_b2
     D_prob = tf.nn.sigmoid(D_logit)
-
     return D_prob, D_logit
 
 
 def plot(samples):
+    """对生成样本数据进行可视化（绘图）."""
+    # 参数设置及意义？
     fig = plt.figure(figsize=(4, 4))
     gs = gridspec.GridSpec(4, 4)
     gs.update(wspace=0.05, hspace=0.05)
