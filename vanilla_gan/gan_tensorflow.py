@@ -81,7 +81,7 @@ def plot(samples):
 
     return fig
 
-
+# 使用PyCharm提交文件
 G_sample = generator(Z)
 D_real, D_logit_real = discriminator(X)
 D_fake, D_logit_fake = discriminator(G_sample)
