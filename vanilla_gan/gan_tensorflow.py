@@ -95,16 +95,22 @@ D_fake, D_logit_fake = discriminator(G_sample)
 
 # Alternative losses:
 # -------------------
-# 使用 0 1 进行labels标记，0：fake 1：real
+"""使用 0 1 进行labels标记，0：fake 1：real
+此处在实现loss函数：
+在分类器loss上，是loss越小越好
+loss越小，表明二者标签相同（即将真实数据与采样数据均正确分类）
+在生成器loss上，loss越小越好
+loss越小，表明可以欺骗分类器（将采样数据判定为真）"""
+# 真实数据判定为真
 D_loss_real = tf.reduce_mean(
     tf.nn.sigmoid_cross_entropy_with_logits(
         logits=D_logit_real, labels=tf.ones_like(D_logit_real)))
+# 采样数据判定为假
 D_loss_fake = tf.reduce_mean(
     tf.nn.sigmoid_cross_entropy_with_logits(
         logits=D_logit_fake, labels=tf.zeros_like(D_logit_fake)))
-# 对D_loss进行max操作
 D_loss = D_loss_real + D_loss_fake
-# 对G_loss进行min操作
+# 采样数据判定为真
 G_loss = tf.reduce_mean(
     tf.nn.sigmoid_cross_entropy_with_logits(
         logits=D_logit_fake, labels=tf.ones_like(D_logit_fake)))
@@ -126,10 +132,10 @@ if not os.path.exists('../../out/'):
 i = 0
 
 for it in range(1000000):
+    # 每1000次迭代进行一次抽样输出（每次采样为16个样本）
     if it % 1000 == 0:
         samples = sess.run(G_sample,
                            feed_dict={Z: sample_Z(16, Z_dim)})
-
         fig = plot(samples)
         plt.savefig('../../out/{}.png'.format(str(i).zfill(3)),
                     bbox_inches='tight')
@@ -137,14 +143,15 @@ for it in range(1000000):
         plt.close(fig)
 
     X_mb, _ = mnist.train.next_batch(mb_size)
-
+    """进行一次分类器优化 进行一次生成器优化
+    在分类器优化时，feed真实数据与采样数据
+    在生成器优化时，仅feed采样数据"""
     _, D_loss_curr = sess.run([D_solver, D_loss],
                               feed_dict={X: X_mb, Z: sample_Z(mb_size, Z_dim)})
     _, G_loss_curr = sess.run([G_solver, G_loss],
                               feed_dict={Z: sample_Z(mb_size, Z_dim)})
-
+# 每1000次迭代，输出一侧分类器与生成器的loss
     if it % 1000 == 0:
         print('Iter: {}'.format(it))
         print('D loss: {:.4}'. format(D_loss_curr))
         print('G_loss: {:.4}'.format(G_loss_curr))
-        print()
