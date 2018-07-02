@@ -115,6 +115,8 @@ G_loss = tf.reduce_mean(
     tf.nn.sigmoid_cross_entropy_with_logits(
         logits=D_logit_fake, labels=tf.ones_like(D_logit_fake)))
 """需要指定var_list，在每次迭代中更新的参数不同，且只是部分更新"""
+# 在此处使用Adam的默认参数
+# learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, use_locking=False
 D_solver = tf.train.AdamOptimizer().minimize(D_loss, var_list=theta_D)
 G_solver = tf.train.AdamOptimizer().minimize(G_loss, var_list=theta_G)
 
@@ -125,9 +127,12 @@ mnist = input_data.read_data_sets('../../data/MNIST_data', one_hot=True)
 
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
+# 对于D的循环迭代次数
+K = 5
 
-if not os.path.exists('../../out/'):
-    os.makedirs('../../out/')
+save_path = os.path.join('../../', 'out_G_' + str(K) + '/')
+if not os.path.exists(save_path):
+    os.makedirs(save_path)
 
 i = 0
 
@@ -137,19 +142,42 @@ for it in range(1000000):
         samples = sess.run(G_sample,
                            feed_dict={Z: sample_Z(16, Z_dim)})
         fig = plot(samples)
-        plt.savefig('../../out/{}.png'.format(str(i).zfill(3)),
+        plt.savefig(save_path + '{}.png'.format(str(i).zfill(3)),
                     bbox_inches='tight')
         i += 1
         plt.close(fig)
 
-    X_mb, _ = mnist.train.next_batch(mb_size)
+    # X_mb, _ = mnist.train.next_batch(mb_size)
     """进行一次分类器优化 进行一次生成器优化
     在分类器优化时，feed真实数据与采样数据
     在生成器优化时，仅feed采样数据"""
+    # 在此处对源代码进行修改：使得每对D进行k此迭代后，对G进行一次迭代
+    """根据论文算法，在进行K次循环之中，每次都要对真实数据和采样数据进行重新采样，
+    而非每次均使用相同的样本进行训练。
+    在使用相同的样本训练时，有以下问题：
+    1）在K = 1 时，生成样本在0-9之间均匀分布，即在一次输出16个采样中据各个数字
+    2）在K = 3 时，生成样本在前期训练较差时，数字分布较为均匀，在训练趋于稳定时，生成样本数据16个均为相同数据
+    如：在实验中存在全为1和9的情况
+    3）在K= 5 时，生成样本情况与K = 3类似
+    当G进行多次训练时：
+    1）K = 1 时，网络输出正常
+    2）K = 3 时，网络正常，训练较慢
+    3）K = 5 时，网络训练失败，输出类似噪声
+    D loss: 4.206e-07
+    G_loss: 14.71
+    随着K值增大，网络的训练难度增大"""
+
+    X_mb, _ = mnist.train.next_batch(mb_size)
     _, D_loss_curr = sess.run([D_solver, D_loss],
                               feed_dict={X: X_mb, Z: sample_Z(mb_size, Z_dim)})
-    _, G_loss_curr = sess.run([G_solver, G_loss],
-                              feed_dict={Z: sample_Z(mb_size, Z_dim)})
+
+    for k in range(K):
+        # 在每次循环中进行重新采样
+        # X_mb, _ = mnist.train.next_batch(mb_size)
+        # _, D_loss_curr = sess.run([D_solver, D_loss],
+        #                           feed_dict={X: X_mb, Z: sample_Z(mb_size, Z_dim)})
+        _, G_loss_curr = sess.run([G_solver, G_loss],
+                                  feed_dict={Z: sample_Z(mb_size, Z_dim)})
 # 每1000次迭代，输出一侧分类器与生成器的loss
     if it % 1000 == 0:
         print('Iter: {}'.format(it))

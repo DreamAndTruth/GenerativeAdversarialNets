@@ -17,8 +17,8 @@
       <file leaf-file-name="gan_tensorflow.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vanilla_gan/gan_tensorflow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="136" selection-start-line="136" selection-end-line="137" />
+            <state relative-caret-position="327">
+              <caret line="167" column="21" lean-forward="true" selection-start-line="167" selection-start-column="21" selection-end-line="167" selection-end-column="21" />
               <folding>
                 <element signature="e#35#58#0" expanded="true" />
               </folding>
@@ -39,9 +39,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="y" value="5" />
-    <option name="width" value="932" />
+    <option name="x" value="337" />
+    <option name="y" value="17" />
+    <option name="width" value="984" />
     <option name="height" value="870" />
   </component>
   <component name="ProjectView">
@@ -134,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1530350331635</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="18-7-1-21:28">
+      <created>1530451697682</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1530451697682</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -147,25 +154,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="668" y="0" width="932" height="870" extended-state="0" />
+    <frame x="625" y="12" width="984" height="870" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2393736" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22621565" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.328877" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5006337" side_tool="true" weight="0.3382353" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3294423" />
-      <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.499375" weight="0.3275401" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49936628" weight="0.3456284" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5006337" side_tool="true" weight="0.3368984" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.328877" />
+      <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.499375" weight="0.36096257" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49936628" visible="true" weight="0.3251366" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -174,9 +182,40 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
     <MESSAGE value="18-6-30-17:18" />
-    <option name="LAST_COMMIT_MESSAGE" value="18-6-30-17:18" />
+    <MESSAGE value="18-7-1-21:28" />
+    <option name="LAST_COMMIT_MESSAGE" value="18-7-1-21:28" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/vanilla_gan/gan_tensorflow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2432">
+          <caret line="133" column="25" lean-forward="true" selection-start-line="133" selection-start-column="25" selection-end-line="133" selection-end-column="25" />
+          <folding>
+            <element signature="e#35#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanilla_gan/gan_tensorflow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2964">
+          <caret line="156" selection-start-line="156" selection-end-line="157" />
+          <folding>
+            <element signature="e#35#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanilla_gan/gan_tensorflow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2584">
+          <caret line="136" selection-start-line="136" selection-end-line="137" />
+          <folding>
+            <element signature="e#35#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vanilla_gan/gan_tensorflow.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2432">
@@ -189,8 +228,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vanilla_gan/gan_tensorflow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="136" selection-start-line="136" selection-end-line="137" />
+        <state relative-caret-position="327">
+          <caret line="167" column="21" lean-forward="true" selection-start-line="167" selection-start-column="21" selection-end-line="167" selection-end-column="21" />
           <folding>
             <element signature="e#35#58#0" expanded="true" />
           </folding>
