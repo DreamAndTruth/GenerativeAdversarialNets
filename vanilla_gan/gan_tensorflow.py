@@ -166,6 +166,7 @@ for it in range(1000000):
     D loss: 4.206e-07
     G_loss: 14.71
     随着K值增大，网络的训练难度增大"""
+    """如何较好的对两个网络进行训练上的均衡"""
 
     X_mb, _ = mnist.train.next_batch(mb_size)
     _, D_loss_curr = sess.run([D_solver, D_loss],
@@ -181,5 +182,5 @@ for it in range(1000000):
 # 每1000次迭代，输出一侧分类器与生成器的loss
     if it % 1000 == 0:
         print('Iter: {}'.format(it))
-        print('D loss: {:.4}'. format(D_loss_curr))
+        print('D loss: {:.4}'.format(D_loss_curr))
         print('G_loss: {:.4}'.format(G_loss_curr))

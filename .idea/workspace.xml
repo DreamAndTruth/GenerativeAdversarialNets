@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8e98cc48-9245-49c2-9568-6ec359d8637d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vanilla_gan/gan_tensorflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/vanilla_gan/gan_tensorflow.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +18,7 @@
         <entry file="file://$PROJECT_DIR$/vanilla_gan/gan_tensorflow.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="584">
-              <caret line="185" lean-forward="true" selection-start-line="185" selection-end-line="185" />
+              <caret line="185" selection-start-line="185" selection-end-line="185" selection-end-column="50" />
               <folding>
                 <element signature="e#35#58#0" expanded="true" />
               </folding>
@@ -163,7 +164,7 @@
     <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13561471" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13561471" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.328877" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5006337" side_tool="true" weight="0.328877" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49936628" weight="0.328877" />
@@ -221,6 +222,16 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/vanilla_gan/gan_tensorflow.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3287">
+          <caret line="173" column="22" lean-forward="true" selection-start-line="173" selection-start-column="22" selection-end-line="173" selection-end-column="22" />
+          <folding>
+            <element signature="e#35#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanilla_gan/gan_tensorflow.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2432">
           <caret line="133" column="25" lean-forward="true" selection-start-line="133" selection-start-column="25" selection-end-line="133" selection-end-column="25" />
           <folding>
@@ -262,7 +273,7 @@
     <entry file="file://$PROJECT_DIR$/vanilla_gan/gan_tensorflow.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="584">
-          <caret line="185" lean-forward="true" selection-start-line="185" selection-end-line="185" />
+          <caret line="185" selection-start-line="185" selection-end-line="185" selection-end-column="50" />
           <folding>
             <element signature="e#35#58#0" expanded="true" />
           </folding>
