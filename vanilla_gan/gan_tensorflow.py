@@ -123,14 +123,14 @@ G_solver = tf.train.AdamOptimizer().minimize(G_loss, var_list=theta_G)
 mb_size = 128
 Z_dim = 100
 
-mnist = input_data.read_data_sets('../../data/MNIST_data', one_hot=True)
+mnist = input_data.read_data_sets('../../data/fashion_mnist', one_hot=True)
 
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 # 对于D的循环迭代次数
-K = 5
+K = 1
 
-save_path = os.path.join('../../', 'out_G_' + str(K) + '/')
+save_path = os.path.join('../../', 'out_fashion' + str(K) + '/')
 if not os.path.exists(save_path):
     os.makedirs(save_path)
 
@@ -168,16 +168,16 @@ for it in range(1000000):
     随着K值增大，网络的训练难度增大"""
     """如何较好的对两个网络进行训练上的均衡"""
 
-    X_mb, _ = mnist.train.next_batch(mb_size)
-    _, D_loss_curr = sess.run([D_solver, D_loss],
-                              feed_dict={X: X_mb, Z: sample_Z(mb_size, Z_dim)})
+    # X_mb, _ = mnist.train.next_batch(mb_size)
+    # _, D_loss_curr = sess.run([D_solver, D_loss],
+    #                          feed_dict={X: X_mb, Z: sample_Z(mb_size, Z_dim)})
 
     for k in range(K):
         # 在每次循环中进行重新采样
-        # X_mb, _ = mnist.train.next_batch(mb_size)
-        # _, D_loss_curr = sess.run([D_solver, D_loss],
-        #                           feed_dict={X: X_mb, Z: sample_Z(mb_size, Z_dim)})
-        _, G_loss_curr = sess.run([G_solver, G_loss],
+        X_mb, _ = mnist.train.next_batch(mb_size)
+        _, D_loss_curr = sess.run([D_solver, D_loss],
+                                   feed_dict={X: X_mb, Z: sample_Z(mb_size, Z_dim)})
+    _, G_loss_curr = sess.run([G_solver, G_loss],
                                   feed_dict={Z: sample_Z(mb_size, Z_dim)})
 # 每1000次迭代，输出一侧分类器与生成器的loss
     if it % 1000 == 0:
